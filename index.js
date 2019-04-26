@@ -60,9 +60,6 @@ app.use(compress({ threshold: 2048 }));
 app.use(require('./routers/account/signin.js').routes());
 app.use(require('./routers/account/signup.js').routes());
 app.use(require('./routers/account/signout.js').routes());
-app.use(require('./routers/markdown.js').routes());
-app.use(require('./routers/git_hook.js').routes());
-app.use(require('./routers/oss_test.js').routes());
 
 app.listen(config.port);
 
