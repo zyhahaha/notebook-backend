@@ -3,7 +3,8 @@ const query = require('../lib/db');
 
 async function addNote(ctx){
   // let data = ['xxxxxxcontent', Date.now()];
-  let {content} = ctx.request.body;
+  // let {content} = ctx.request.body;
+  let {content} = ctx.request.query;
   let data = [content, Date.now()];
   await insertData(data).then(async result => {
     console.log(result);
@@ -52,7 +53,12 @@ function queryData() {
   return query( _sql )
 }
 
-router.post('/note/add', addNote);
+router.get('/note/add', addNote);
+// router.options('/note/add', ctx => {
+//   ctx.body = {
+//     code: 1000
+//   }
+// });
 // router.get('/note/modify', updateNote);
 router.get('/note/delete', delNote);
 router.get('/note/query', queryNote);
