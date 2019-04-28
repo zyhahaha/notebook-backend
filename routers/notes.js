@@ -2,7 +2,9 @@ const router = require('koa-router')();
 const query = require('../lib/db');
 
 async function addNote(ctx){
-  let data = ['xxxxxxcontent', Date.now()];
+  // let data = ['xxxxxxcontent', Date.now()];
+  let {content} = ctx.request.body;
+  let data = [content, Date.now()];
   await insertData(data).then(async result => {
     console.log(result);
     ctx.set('Access-Control-Allow-Origin','*');
@@ -50,7 +52,7 @@ function queryData() {
   return query( _sql )
 }
 
-router.get('/note/add', addNote);
+router.post('/note/add', addNote);
 // router.get('/note/modify', updateNote);
 router.get('/note/delete', delNote);
 router.get('/note/query', queryNote);
