@@ -5,19 +5,20 @@ async function addNote(ctx){
   let data = ['xxxxxxcontent', Date.now()];
   await insertData(data).then(async result => {
     console.log(result);
+    ctx.set('Access-Control-Allow-Origin','*');
     ctx.body = result;
   })
 }
-async function addNote(ctx){
-  let data = ['xxxxxxcontent', Date.now()];
-  await insertData(data).then(async result => {
-    console.log(result);
-    ctx.body = result;
-  })
-}
+// async function addNote(ctx){
+//   let data = ['xxxxxxcontent', Date.now()];
+//   await insertData(data).then(async result => {
+//     console.log(result);
+//     ctx.body = result;
+//   })
+// }
 async function queryNote(ctx){
   await queryData().then(async result => {
-    console.log(result);
+    ctx.set('Access-Control-Allow-Origin','*');
     ctx.body = result;
   })
 }
