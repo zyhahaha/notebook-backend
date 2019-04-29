@@ -5,7 +5,7 @@ const bodyParser = require('koa-bodyparser');
 const session = require('koa-session-minimal');
 const MysqlStore = require('koa-mysql-session');
 const config = require('./config');
-const compress = require('koa-compress'); // gzip压缩
+// // const compress = require('koa-compress'); // gzip压缩
 // const koaStatic = require('koa-static')
 const staticCache = require('koa-static-cache');
 const app = new Koa();
@@ -56,7 +56,7 @@ app.use(
   })
 );
 
-app.use(compress({ threshold: 2048 }));
+// app.use(compress({ threshold: 2048 }));
 //  路由
 app.use(require('./routers/account/signin.js').routes());
 app.use(require('./routers/account/signup.js').routes());
