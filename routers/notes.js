@@ -12,13 +12,14 @@ async function addNote(ctx){
     ctx.body = result;
   })
 }
-// async function addNote(ctx){
-//   let data = ['xxxxxxcontent', Date.now()];
-//   await insertData(data).then(async result => {
-//     console.log(result);
-//     ctx.body = result;
-//   })
-// }
+async function updateNote(ctx){
+  let {id, content} = ctx.request.body;
+  let data = [content, Date.now(), id];
+  await updateData(data).then(async result => {
+    console.log(result);
+    ctx.body = result;
+  })
+}
 async function queryNote(ctx){
   await queryData().then(async result => {
     ctx.set('Access-Control-Allow-Origin','*');
@@ -59,7 +60,7 @@ router.post('/note/add', addNote);
 //     code: 1000
 //   }
 // });
-// router.get('/note/modify', updateNote);
+router.get('/note/modify', updateNote);
 router.get('/note/delete', delNote);
 router.get('/note/query', queryNote);
 // router.post('/signin', controller.postSignin)
