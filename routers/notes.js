@@ -60,7 +60,7 @@ router.post('/note/add', addNote);
 //     code: 1000
 //   }
 // });
-router.get('/note/modify', updateNote);
+router.post('/note/modify', updateNote);
 router.get('/note/delete', delNote);
 router.get('/note/query', queryNote);
 // router.post('/signin', controller.postSignin)
