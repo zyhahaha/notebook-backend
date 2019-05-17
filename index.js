@@ -62,6 +62,7 @@ app.use(require('./routers/account/signin.js').routes());
 app.use(require('./routers/account/signup.js').routes());
 app.use(require('./routers/account/signout.js').routes());
 app.use(require('./routers/notes.js').routes());
+app.use(require('./routers/cv.js').routes());
 
 app.listen(config.port);
 

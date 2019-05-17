@@ -2,9 +2,9 @@ const router = require('koa-router')();
 const query = require('../lib/db');
 
 async function addCvMsg(ctx){
-  let {content, author} = ctx.request.body;
-  // let {content} = ctx.request.query;
-  let data = [content, author, Date.now()];
+  let {comment, author} = ctx.request.body;
+  // let {comment} = ctx.request.query;
+  let data = [comment, author, Date.now()];
   await insertData(data).then(async result => {
     console.log(result);
     ctx.set('Access-Control-Allow-Origin','*');
@@ -12,8 +12,8 @@ async function addCvMsg(ctx){
   })
 }
 async function updateNote(ctx){
-  let {id, content} = ctx.request.body;
-  let data = [content, Date.now(), id];
+  let {id, comment} = ctx.request.body;
+  let data = [comment, Date.now(), id];
   await updateData(data).then(async result => {
     console.log(result);
     ctx.body = result;
@@ -35,11 +35,11 @@ async function delNote(ctx){
 
 // add
 function insertData(data) {
-  let _sql = "insert into cv set content=?,author=?,tim=?;"
+  let _sql = "insert into cv set comment=?,author=?,tim=?;"
   return query( _sql, data )
 }
 function updateData(data) {
-  let _sql = "update notes set content=?,tim=? where id=?;"
+  let _sql = "update notes set comment=?,tim=? where id=?;"
   return query( _sql, data )
 }
 // 删除用户
@@ -54,8 +54,8 @@ function queryData() {
 }
 
 router.post('/cv/add', addCvMsg);
-router.post('/cv/modify', updateNote);
-router.get('/cv/delete', delNote);
+// router.post('/cv/modify', updateNote);
+// router.get('/cv/delete', delNote);
 router.get('/cv/query', queryCvMsg);
 
 module.exports = router
