@@ -1,7 +1,8 @@
 // require('./lib/db');
 const Koa = require('koa');
 const path = require('path');
-const bodyParser = require('koa-bodyparser');
+// const bodyParser = require('koa-bodyparser');
+const koaBody = require('koa-body');
 const session = require('koa-session-minimal');
 // const MysqlStore = require('koa-mysql-session');
 const config = require('./config');
@@ -48,11 +49,12 @@ app.use(
   )
 );
 
-app.use(
-  bodyParser({
-    formLimit: '1mb'
-  })
-);
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+      maxFileSize: 200*1024*1024	// 设置上传文件大小最大限制，默认2M
+  }
+}));
 
 // app.use(compress({ threshold: 2048 }));
 //  路由
