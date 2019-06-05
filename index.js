@@ -1,12 +1,10 @@
-require('./lib/db');
+// require('./lib/db');
 const Koa = require('koa');
 const path = require('path');
 const bodyParser = require('koa-bodyparser');
 const session = require('koa-session-minimal');
-const MysqlStore = require('koa-mysql-session');
+// const MysqlStore = require('koa-mysql-session');
 const config = require('./config');
-// // const compress = require('koa-compress'); // gzip压缩
-// const koaStatic = require('koa-static')
 const staticCache = require('koa-static-cache');
 const app = new Koa();
 
@@ -19,12 +17,12 @@ const sessionMysqlConfig = {
 };
 
 // 配置session中间件
-app.use(
-  session({
-    key: 'USER_SID',
-    store: new MysqlStore(sessionMysqlConfig)
-  })
-);
+// app.use(
+//   session({
+//     key: 'USER_SID',
+//     store: new MysqlStore(sessionMysqlConfig)
+//   })
+// );
 
 // 配置静态资源加载中间件
 // app.use(koaStatic(
@@ -58,11 +56,12 @@ app.use(
 
 // app.use(compress({ threshold: 2048 }));
 //  路由
-app.use(require('./routers/account/signin.js').routes());
-app.use(require('./routers/account/signup.js').routes());
-app.use(require('./routers/account/signout.js').routes());
-app.use(require('./routers/notes.js').routes());
-app.use(require('./routers/cv.js').routes());
+// app.use(require('./routers/account/signin.js').routes());
+// app.use(require('./routers/account/signup.js').routes());
+// app.use(require('./routers/account/signout.js').routes());
+// app.use(require('./routers/notes.js').routes());
+// app.use(require('./routers/cv.js').routes());
+app.use(require('./routers/upload.js').routes());
 
 app.listen(config.port);
 
