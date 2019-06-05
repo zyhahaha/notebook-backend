@@ -5,9 +5,9 @@ const config = {
   database: {
     DATABASE: 'test',
     USERNAME: 'root',
-    PASSWORD: 'zy@123456',
+    PASSWORD: '123456',
     PORT: '3306',
-    HOST: 'rm-uf6t5b7yq6l642y707o.mysql.rds.aliyuncs.com'
+    HOST: '192.168.0.102'
   }
 };
 
